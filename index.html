@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BREACHPUNK — Train Wreck Company</title>
+  <meta name="description" content="BREACHPUNK: an indie game about hacking, graffiti and resistance in a city run by an ancient AI. In development by Train Wreck Company.">
+  <meta property="og:title" content="BREACHPUNK">
+  <meta property="og:description" content="Year 3528 N.D.D. One city. One AI. Art is banned. Break in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://trainwreckcompany.github.io/">
+  <meta name="theme-color" content="#0b1124">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top">TRAIN WRECK CO.</a>
+    <nav>
+      <a href="#world">World</a>
+      <a href="#game">Game</a>
+      <a href="#devlog">Devlog</a>
+      <a href="#follow">Follow</a>
+    </nav>
+    <div class="watch" title="You are being observed">
+      <span class="eye" aria-hidden="true"><span class="pupil"></span></span>
+      <span class="watch-label">HEINDE // <span id="watch-count">0</span> observed</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="kicker">// transmission intercepted</p>
+      <h1 class="glitch" data-text="BREACHPUNK">BREACHPUNK</h1>
+      <p class="tagline">Hack the walls. Paint the walls. Bring them down.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#follow">Follow development</a>
+        <a class="btn btn-ghost" href="#world">Read the file</a>
+      </div>
+      <p class="status">STATUS: <span class="blink">IN DEVELOPMENT</span></p>
+    </section>
+
+    <!-- WORLD / LORE TERMINAL -->
+    <section id="world" class="section">
+      <h2><span class="num">01</span> The World</h2>
+      <div class="terminal" role="region" aria-label="Lore terminal">
+        <div class="terminal-bar">
+          <span></span><span></span><span></span>
+          <p>archive://remnants/intro.txt</p>
+        </div>
+        <pre id="lore" class="terminal-body" aria-live="polite"></pre>
+        <noscript>
+          <pre class="terminal-body">YEAR 3528 N.D.D. — NOS DONUM DUCO.
+Humanity rebuilt the planet into a single city.
+An ancient AI called HEINDE keeps it running.
+Art is banned. Books are banned. Thinking is discouraged.
+The rich are still here. For now.</pre>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- GAME FEATURES -->
+    <section id="game" class="section">
+      <h2><span class="num">02</span> The Game</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Breach</h3>
+          <p>Slip past cameras and crack HEINDE's systems through hacking minigames. Every change you make leaves a mark.</p>
+        </article>
+        <article class="card">
+          <h3>Tag</h3>
+          <p>Art is illegal. Paint anyway. Tagged walls become your save points across the city.</p>
+        </article>
+        <article class="card">
+          <h3>Climb</h3>
+          <p>A vertical city: the rich above, data centers below, and you somewhere in the remnants between.</p>
+        </article>
+        <article class="card">
+          <h3>Choose</h3>
+          <p>No ending menu. The world bends around small decisions until it is unrecognisable.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DEVLOG -->
+    <section id="devlog" class="section">
+      <h2><span class="num">03</span> Devlog</h2>
+      <ol class="log">
+        <!-- Newest entry goes at the top. Copy a <li> block to add one. -->
+        <li class="log-entry">
+          <time datetime="2026-10-18">2026.10.18</time>
+          <div>
+            <h3>Site online</h3>
+            <p>The signal is live. Devlogs, screenshots and news will land here as the game takes shape.</p>
+          </div>
+        </li>
+        <li class="log-entry">
+          <time datetime="2026-10-01">2026.10</time>
+          <div>
+            <h3>Going 2D</h3>
+            <p>BREACHPUNK is being rebuilt as a 2D game, with a few first-person halls kept where they matter.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FOLLOW -->
+    <section id="follow" class="section follow">
+      <h2><span class="num">04</span> Stay in the signal</h2>
+      <p>Wishlist and store pages are coming. Until then, check back here.</p>
+      <div class="cta-row">
+        <!-- Replace href="#" with real links when you have them -->
+        <a class="btn btn-ghost disabled" href="#" aria-disabled="true">Steam — soon</a>
+        <a class="btn btn-ghost" href="https://github.com/trainwreckcompany">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Train Wreck Company. All walls reserved.</p>
+    <p class="tiny">N.D.D. — nos donum duco</p>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

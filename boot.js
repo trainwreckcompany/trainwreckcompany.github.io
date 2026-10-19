@@ -6,9 +6,9 @@
 
   // --- tuning ----------------------------------------------------------
   const RUN   = 1150;  // ms of rain
-  const DRAIN = 200;  // ms rain stopped, screen still dark, trails die off
+  const DRAIN = 100;  // ms rain stopped, screen still dark, trails die off
   const FADE  = 350;   // ms fade out
-  const GHOST = 0.04;  // afterglow strength (0 = off, ~0.1 = obvious)
+  const GHOST = 0.03;  // afterglow strength (0 = off, ~0.1 = obvious)
   // ---------------------------------------------------------------------
 
   // calibration tables

@@ -1,0 +1,21 @@
+title: BREACHPUNK
+description: An indie game in development by Train Wreck Company.
+url: "https://trainwreckcompany.github.io"
+
+# post URLs look like /devlog/2026/10/site-online/
+permalink: /devlog/:year/:month/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      type: devlog

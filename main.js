@@ -108,4 +108,64 @@
       countEl.textContent = fmt(n);
     }, 900);
   }
+
+  // ---------- 4. devlog filters (/devlog/) ----------
+  // also works from links like /devlog/#screenshots
+  const filterBtns = document.querySelectorAll(".filters [data-filter]");
+  if (filterBtns.length) {
+    const items = document.querySelectorAll(".feed-item");
+    const empty = document.querySelector(".feed-empty");
+    const apply = (kind) => {
+      if (![...filterBtns].some((b) => b.dataset.filter === kind)) kind = "all";
+      let shown = 0;
+      items.forEach((li) => {
+        const on = kind === "all" || li.dataset.type === kind;
+        li.hidden = !on;
+        if (on) shown++;
+      });
+      filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === kind)));
+      if (empty) empty.hidden = shown > 0;
+    };
+    filterBtns.forEach((b) =>
+      b.addEventListener("click", () => {
+        const kind = b.dataset.filter;
+        history.replaceState(null, "", kind === "all" ? location.pathname : "#" + kind);
+        apply(kind);
+      })
+    );
+    apply(location.hash.slice(1) || "all");
+    window.addEventListener("hashchange", () => apply(location.hash.slice(1) || "all"));
+  }
+
+  // ---------- 5. screenshot lightbox (post pages) ----------
+  const shots = [...document.querySelectorAll("[data-lightbox]")];
+  if (shots.length) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.hidden = true;
+    box.innerHTML = '<img alt=""><p></p>';
+    document.body.append(box);
+    const img = box.querySelector("img");
+    const cap = box.querySelector("p");
+    let at = 0;
+
+    const show = (i) => {
+      at = (i + shots.length) % shots.length;
+      const a = shots[at];
+      img.src = a.href;
+      img.alt = a.querySelector("img")?.alt || "";
+      cap.textContent = a.closest("figure")?.querySelector("figcaption")?.textContent || "";
+      box.hidden = false;
+    };
+    const close = () => { box.hidden = true; img.removeAttribute("src"); };
+
+    shots.forEach((a, i) => a.addEventListener("click", (e) => { e.preventDefault(); show(i); }));
+    box.addEventListener("click", close);
+    window.addEventListener("keydown", (e) => {
+      if (box.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") show(at + 1);
+      if (e.key === "ArrowLeft") show(at - 1);
+    });
+  }
 })();

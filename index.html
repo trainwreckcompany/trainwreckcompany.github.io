@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -95,16 +97,20 @@ Who's really in charge of your story?</pre>
     <!-- DEVLOG -->
     <section id="devlog" class="section">
       <h2><span class="num">03</span> Devlog</h2>
+      <!-- filled automatically with the 3 newest posts from _posts/ -->
       <ol class="log">
-        <!-- Newest entry goes at the top. Copy a <li> block to add one. -->
+        {% for post in site.posts limit:3 %}
+        {% assign kind = post.type | default: "devlog" %}
         <li class="log-entry">
-          <time datetime="2026-10-18">2026.10.18</time>
+          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%Y.%m.%d" }}</time>
           <div>
-            <h3>Site online</h3>
-            <p>The signal is live. Devlogs, screenshots and news will land here as the game takes shape.</p>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a> <span class="tag tag-{{ kind }}">{{ kind }}</span></h3>
+            <p>{{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
           </div>
         </li>
+        {% endfor %}
       </ol>
+      <p class="log-more"><a href="/devlog/">All transmissions &rarr;</a></p>
     </section>
 
     <!-- FOLLOW -->
@@ -119,10 +125,7 @@ Who's really in charge of your story?</pre>
     </section>
   </main>
   
-  <footer class="footer">
-    <p>© <span id="year">2026</span> Train Wreck Company. All walls reserved. Music By: <a href="https://open.spotify.com/artist/0PGBAcOMCdwA7II5i2m1OP?si=sFr5bd3WRmOaqukGHzxOlA">S_C_H_A_S_E</a></p>
-    <p class="tiny">N.D.D. — nos donum duco</p>
-  </footer>
+{% include footer.html %}
 
   <script src="boot.js" defer></script>
   <script src="main.js" defer></script>

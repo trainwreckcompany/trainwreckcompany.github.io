@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% include head.html %}
+  {% assign kind = page.type | default: "devlog" %}
+  {% assign blurb = page.summary | default: page.excerpt | strip_html | strip_newlines | truncate: 160 %}
+  {% assign share_img = page.cover | default: page.images[0].src %}
+  <title>{{ page.title }} — BREACHPUNK</title>
+  <meta name="description" content="{{ blurb | escape }}">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ blurb | escape }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if share_img %}<meta property="og:image" content="{{ site.url }}{{ share_img }}">{% endif %}
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+{% include topbar.html %}
+
+  <main class="post-wrap">
+    <a class="back" href="/devlog/">&larr; all transmissions</a>
+
+    <article class="post">
+      <header class="post-head">
+        <p class="post-meta">
+          <span class="tag tag-{{ kind }}">{{ kind }}</span>
+          <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+        </p>
+        <h1>{{ page.title }}</h1>
+        {% if page.summary %}<p class="post-summary">{{ page.summary }}</p>{% endif %}
+      </header>
+
+      {% if page.cover %}
+      <img class="post-cover" src="{{ page.cover }}" alt="{{ page.cover_alt | default: page.title | escape }}">
+      {% endif %}
+
+      <div class="post-body">
+{{ content }}
+      </div>
+
+      {% if page.images %}
+      <div class="gallery">
+        {% for img in page.images %}
+        <figure>
+          <a href="{{ img.src }}" data-lightbox>
+            <img src="{{ img.src }}" alt="{{ img.caption | default: page.title | escape }}" loading="lazy">
+          </a>
+          {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+        </figure>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </article>
+
+    <nav class="post-nav" aria-label="More posts">
+      {% if page.previous %}
+      <a class="older" href="{{ page.previous.url }}"><span>older</span>{{ page.previous.title }}</a>
+      {% endif %}
+      {% if page.next %}
+      <a class="newer" href="{{ page.next.url }}"><span>newer</span>{{ page.next.title }}</a>
+      {% endif %}
+    </nav>
+  </main>
+
+{% include footer.html %}
+  <script src="/main.js" defer></script>
+</body>
+</html>

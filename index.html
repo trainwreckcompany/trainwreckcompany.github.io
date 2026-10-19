@@ -14,8 +14,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("booting");
+      setTimeout(function () { document.documentElement.classList.remove("booting"); }, 3000);
+    }
+  </script>
 </head>
 <body>
+  <div id="boot" class="boot" aria-hidden="true"><canvas></canvas></div>
   <div class="scanlines" aria-hidden="true"></div>
 
   <header class="topbar">
@@ -118,6 +125,7 @@ Who's really in charge of your story?</pre>
     <p class="tiny">N.D.D. — nos donum duco</p>
   </footer>
 
+  <script src="boot.js" defer></script>
   <script src="main.js" defer></script>
 </body>
 </html>

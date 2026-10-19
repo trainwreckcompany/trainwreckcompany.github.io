@@ -26,7 +26,8 @@
     "They hide from truth.",
     "",
     "> you are in the remnants.",
-    "> find a wall."
+    "> find a wall.",
+    "> break it, paint it, rebel."
   ];
 
   const loreEl = document.getElementById("lore");

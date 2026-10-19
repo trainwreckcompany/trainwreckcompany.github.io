@@ -59,6 +59,21 @@ a:hover { color: var(--yellow); }
   mix-blend-mode: multiply;
 }
 
+/* ---------- Boot screen ---------- */
+.boot { display: none; }
+.booting .boot {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 200;               /* above scanlines and topbar */
+  background: var(--bg);
+  cursor: pointer;
+  transition: opacity 0.35s ease;
+}
+.booting body { overflow: hidden; }
+.boot canvas { display: block; }
+.boot.boot-out { opacity: 0; pointer-events: none; }
+
 /* ---------- Top bar ---------- */
 .topbar {
   position: sticky;

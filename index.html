@@ -17,14 +17,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
-    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.documentElement.classList.add("booting");
-      setTimeout(function () { document.documentElement.classList.remove("booting"); }, 2000);
-    }
+    (function () {
+      var d = document.documentElement, seen = false;
+      try { seen = sessionStorage.getItem("bp-booted") === "1"; } catch (e) {}
+      if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        d.classList.add("booting");
+        // safety net: if boot.js never runs, don't trap the page
+        addEventListener("load", function () { if (!window.__bootReady) d.classList.remove("booting"); });
+      }
+    })();
   </script>
 </head>
 <body>
-  <div id="boot" class="boot" aria-hidden="true"><canvas></canvas></div>
+  <div id="boot" class="boot">
+    <div class="rig">
+      <div class="crt">
+        <div class="crt-screen">
+          <canvas></canvas>
+          <div class="crt-power" aria-hidden="true"></div>
+          <div class="crt-glass" aria-hidden="true"></div>
+        </div>
+        <div class="crt-chin" aria-hidden="true">
+          <span class="crt-badge">TWC // 3528</span>
+          <span class="crt-led"></span>
+        </div>
+      </div>
+      <div class="deck">
+        <div class="drive">
+          <div class="slot"></div>
+          <span class="drive-led" aria-hidden="true"></span>
+          <span class="eject" aria-hidden="true"></span>
+          <div class="disk-clip">
+            <button id="boot-disk" class="disk" type="button" aria-label="Insert the disk to enter the site">
+              <span class="disk-label">
+                <span class="disk-title">BREACHPUNK</span>
+                <span class="disk-note">vol. 00</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="vents" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="boot-hint">&gt; insert disk<span class="boot-cursor">_</span></p>
+    <button class="boot-skip" type="button">skip &rsaquo;</button>
+  </div>
   <div class="scanlines" aria-hidden="true"></div>
 
   <header class="topbar">
@@ -128,9 +165,10 @@ Who's really in charge of your story?</pre>
   
 {% include footer.html %}
 
-<audio id="boot" src="audio/boot.wav"></audio>
-  
-  <script src="boot.js" defer></script>
+  <!-- boot.js only loads this when the disk screen is shown -->
+  <audio id="boot-sound" data-src="audio/boot.mp3" preload="none"></audio>
+
+  <script src="boot.js" defer onerror="document.documentElement.classList.remove('booting')"></script>
   <script src="main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+---
+title: Devlog
+---
+<!doctype html>
+<html lang="en">
+<head>
+{% include head.html %}
+  <title>Devlog — BREACHPUNK</title>
+  <meta name="description" content="Devlogs, screenshots and news from the development of BREACHPUNK.">
+  <meta property="og:title" content="BREACHPUNK — Devlog">
+  <meta property="og:description" content="Devlogs, screenshots and news from the development of BREACHPUNK.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}/devlog/">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+{% include topbar.html %}
+
+  <main class="section devlog-page">
+    <p class="kicker">// archive://transmissions</p>
+    <h1 class="page-title">Devlog</h1>
+
+    <div class="filters" role="group" aria-label="Filter posts">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="devlog" aria-pressed="false">Devlogs</button>
+      <button type="button" data-filter="screenshots" aria-pressed="false">Screenshots</button>
+      <button type="button" data-filter="news" aria-pressed="false">News</button>
+    </div>
+
+    <ol class="feed">
+      {% for post in site.posts %}
+      {% assign kind = post.type | default: "devlog" %}
+      {% assign thumb = post.cover | default: post.images[0].src %}
+      <li class="feed-item" data-type="{{ kind }}">
+        <a href="{{ post.url }}">
+          {% if thumb %}<img class="feed-thumb" src="{{ thumb }}" alt="" loading="lazy">{% endif %}
+          <div class="feed-text">
+            <p class="post-meta">
+              <span class="tag tag-{{ kind }}">{{ kind }}</span>
+              <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+            </p>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 160 }}</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="feed-empty" hidden>No transmissions of this kind yet.</p>
+  </main>
+
+{% include footer.html %}
+  <script src="/main.js" defer></script>
+</body>
+</html>

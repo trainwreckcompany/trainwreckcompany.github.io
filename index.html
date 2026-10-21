@@ -165,9 +165,19 @@ Who's really in charge of your story?</pre>
   
 {% include footer.html %}
 
+  <audio id="loopAudio" src="Website Background.mp3" loop></audio>
   <!-- boot.js only loads this when the disk screen is shown -->
   <audio id="boot-sound" data-src="audio/boot.mp3" preload="none"></audio>
 
+  <script>
+  const firstAudio = document.getElementById('boot-sound');
+  const loopAudio = document.getElementById('loopAudio');
+
+  // Optional: Add a button to start playback if browser blocks autoplay
+  firstAudio.addEventListener('ended', () => {
+    loopAudio.play();
+  });
+</script>
   <script src="boot.js" defer onerror="document.documentElement.classList.remove('booting')"></script>
   <script src="main.js" defer></script>
 </body>

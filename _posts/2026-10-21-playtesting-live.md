@@ -1,6 +1,6 @@
 ---
 title: PLAYTESTING NOW LIVE!!
-type: devlog
+type: news
 summary: playtesting binary is available in the discord!
 ---
 # PLAYTESTING IS LIVE

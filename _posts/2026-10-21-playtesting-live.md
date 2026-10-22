@@ -1,7 +1,7 @@
 ---
-title: Game Engine Mechanics Update
+title: PLAYTESTING NOW LIVE!!
 type: devlog
-summary: Why we built our own game engine and how is it going? Spoiler, it's tough.
+summary: playtesting binary is available in the discord!
 ---
 # PLAYTESTING IS LIVE
 Hey guys! Officially playtesting is live, binaries are available in the discord for windows and mac (linux is untested)!!!! You can find the link to join the discord from the main page (trainwreckcompany.github.io)
